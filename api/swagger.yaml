@@ -1,0 +1,79 @@
+---
+swagger: "2.0"
+info:
+  description: "A resource for creating park elsewhere stickers."
+  version: "1.0.0"
+  title: "Stickers"
+  contact: {}
+host: "localhost:8080"
+schemes:
+- "http"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /stickers:
+    post:
+      summary: "Create Stickers"
+      operationId: "stickersPOST"
+      consumes: []
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/body"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/inline_response_200"
+      x-swagger-router-controller: "Default"
+definitions:
+  inline_response_200:
+    required:
+    - "stickers"
+    properties:
+      stickers:
+        type: "array"
+        description: "Sticker definitions"
+        items:
+          $ref: "#/definitions/inline_response_200_stickers"
+    example:
+      stickers:
+      - my_reference: "my_reference"
+        sticker_id: "sticker_id"
+        sticker_url: "sticker_url"
+      - my_reference: "my_reference"
+        sticker_id: "sticker_id"
+        sticker_url: "sticker_url"
+  inline_response_200_stickers:
+    required:
+    - "sticker_id"
+    - "sticker_url"
+    properties:
+      sticker_id:
+        type: "string"
+        description: "UUID"
+      sticker_url:
+        type: "string"
+        description: "URL used by the sticker respondent (Bob)"
+      my_reference:
+        type: "string"
+        description: "Your reference"
+    example:
+      my_reference: "my_reference"
+      sticker_id: "sticker_id"
+      sticker_url: "sticker_url"
+  body:
+    type: "object"
+    required:
+    - "number_stickers"
+    properties:
+      number_stickers:
+        type: "integer"
+        description: "The number of stickers which are needed"
+      my_reference:
+        type: "string"
+        description: "Information for records"
