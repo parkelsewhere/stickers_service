@@ -7,7 +7,7 @@ info:
   contact:
     name: "alicedigitallabs@gmail.com"
     email: "alicedigitallabs@gmail.com"
-host: "showyoucareresources.herokuapp.com"
+host: "localhost:8080"
 schemes:
 - "http"
 paths:
